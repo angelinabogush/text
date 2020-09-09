@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <iomanip>
+#include <stdlib.h>
+#include <vector>
+
+using namespace std;
+
+class File
+{
+private:
+	const string nameOfFike = "ReadeFile";
+
+public:
+
+	void operator [] (int index) // перегрузка оператора []
+	{
+		string temp;
+		ifstream fin("ReadeFile.txt", ios::in);
+		if (!fin.is_open()) cout << "Файла нет\n";
+		else
+		{
+			string first;
+			while (!fin.eof())
+			{
+				fin >> first;
+			}
+			cout << first;
+		}
+
+		fin.seekg(index, ios::beg);
+		fin >> temp;
+		cout << endl << temp;
+		fin.close();
+	}
+
+
+};
+
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	File laba;
+	laba[5];
+	system("pause");
+}
+
